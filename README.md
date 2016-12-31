@@ -1,11 +1,12 @@
+![ION logo](https://github.com/empinel/Ion-Core/blob/master/src/qt/res/images/splash3.png)
+
+
 # **Ion-Core (ION) v1.0**
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 [![Build Status](https://travis-ci.org/empinel/Ion-Core.png?branch=master)](https://travis-ci.org/empinel/Ion-Core)
 
 Ion Integration/Staging Tree
 ================================
-![ION logo](https://github.com/empinel/Ion-Core/blob/master/src/qt/res/icons/ion-80.png)
 
 **Copyright (c) 2015-2017 Empinel**
 
@@ -99,7 +100,7 @@ Dependency Build Instructions: Ubuntu & Debian
 ----------------------------------------------
 Build requirements:
 
-    sudo apt-get install git build-essential libtool autotools-dev autoconf pkg-config libssl-dev libcrypto++-dev libevent-dev
+    sudo apt-get install git build-essential libtool autotools-dev autoconf pkg-config libssl-dev libcrypto++-dev libevent-dev libminiupnpc-dev libgmp-dev
     
 for Ubuntu 12.04 and later or Debian 7 and later libboost-all-dev has to be installed:
 
