@@ -94,18 +94,18 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-        vSeeds.push_back(CDNSSeedData("ionomy.com","dnsseed.ionomy.com"));
-        vSeeds.push_back(CDNSSeedData("ionomy.nl","main.seed.ionomy.nl"));
-        vSeeds.push_back(CDNSSeedData("ionomy.com","dnsseed2.ionomy.com"));
-
+        /* vSeeds.push_back(CDNSSeedData("ionomy.com","dnsseed.ionomy.com"));
+           vSeeds.push_back(CDNSSeedData("ionomy.nl","main.seed.ionomy.nl"));
+           vSeeds.push_back(CDNSSeedData("ionomy.com","dnsseed2.ionomy.com"));
+		*/ // TODO: PUT BACK BEFORE DEPLOY!
         convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
 
         nPoolMaxTransactions = 3;
-        //strSporkKey = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
-        //strMasternodePaymentsPubKey = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
-        strDarksendPoolDummyAddress = "TcYM6qFTC9i1CHb4GoHTQchF7Z2Qru73gv";
-        nLastPOWBlock 	= 2000;
-        nPOSStartBlock 	= 1;
+        strSporkKey = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
+        strMasternodePaymentsPubKey = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
+        strDarksendPoolDummyAddress = "ieErtN63myWQEmvBp3epCAKVDbXGkJB5yh"; // TODO: Change Parameters to something for da boss
+        nLastPOWBlock 	= 0x7fffffff;
+        nPOSStartBlock 	= 0x7fffffff;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }
