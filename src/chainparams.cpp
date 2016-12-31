@@ -101,8 +101,8 @@ public:
         convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0440c35f61b33eb79e68ff10c657c8455c9fa55bc6dc014dd8107ce88c87a2363d91d9991c071948ae26460f948ebf97115f93f86c6841029375d41cea6028bace";
-        strMasternodePaymentsPubKey = "04bf8a9e720e5ca5989d506211824011aed099c98e9ec443d996dfdc42f34844fb0f44fc0e9b3c0a282f931d5517130f13d8be4624cc5c8d8353828dad54bd174a";
+ //       strSporkKey = "0440c35f61b33eb79e68ff10c657c8455c9fa55bc6dc014dd8107ce88c87a2363d91d9991c071948ae26460f948ebf97115f93f86c6841029375d41cea6028bace";
+ //       strMasternodePaymentsPubKey = "04bf8a9e720e5ca5989d506211824011aed099c98e9ec443d996dfdc42f34844fb0f44fc0e9b3c0a282f931d5517130f13d8be4624cc5c8d8353828dad54bd174a";
         strDarksendPoolDummyAddress = "ioySFjLiKYdv2D2sWHs2hng2m3MSXQ3e6a"; // TODO: Change Parameters to something for da boss
         nLastPOWBlock 	= 0x7fffffff;
         nPOSStartBlock 	= 0x7fffffff;
