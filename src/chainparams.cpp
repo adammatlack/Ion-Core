@@ -105,7 +105,7 @@ public:
  //       strMasternodePaymentsPubKey = "04bf8a9e720e5ca5989d506211824011aed099c98e9ec443d996dfdc42f34844fb0f44fc0e9b3c0a282f931d5517130f13d8be4624cc5c8d8353828dad54bd174a";
         strDarksendPoolDummyAddress = "ioySFjLiKYdv2D2sWHs2hng2m3MSXQ3e6a"; // TODO: Change Parameters to something for da boss
         nLastPOWBlock 	= 100000000;
-        nPOSStartBlock 	= 100000000;
+        nPOSStartBlock 	= 1;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }
