@@ -92,8 +92,8 @@ public:
         vAlertPubKey = ParseHex("040627d06214ba58f42eb74d475d32bc359c822902fb91766be30bfff2b878d2b5d4efa9e38c2a3438b15ff85e734ce3ce0382f8ebb79b6cdb3bc779af69e0b9b8");
         nDefaultPort = 58273;
         nRPCPort = 59273;
-        nProofOfWorkLimit = ~uint256(0) >> 24;
-        nProofOfStakeLimit = ~uint256(0) >> 16;
+        nProofOfWorkLimit = ~uint256(0) >> 24; // 000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        nProofOfStakeLimit = ~uint256(0) >> 24;
 
         const char* pszTimestamp = "Reuters: Oil up $1 on OPEC output cuts, China demand forecast";
         CTransaction txNew;
@@ -102,21 +102,21 @@ public:
 		txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
 		txNew.vout[0].nValue = (1 * COIN);
 		txNew.vout[0].scriptPubKey = CScript() << ParseHex("04964ae39ac7421145f93a031791749772f671fa1153e4d6df87b1dce87ed2d68a74b46df6cd023ceffbbae4feed084915372d2b8ca866d24dd979af6f09800b3d") << OP_CHECKSIG;
-        txNew.nTime = 1484236000;
+        txNew.nTime = 1484332093;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1484236000;
-        genesis.nBits    = nProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 220206;
+        genesis.nTime    = 1484332093;
+        genesis.nBits    = 0x1e00ffff;
+        genesis.nNonce   = 6315872;
 
 		hashGenesisBlock = genesis.GetHash();
 
 		if (false) { MineGenesis(genesis, nProofOfWorkLimit); }
         
-        assert(hashGenesisBlock == uint256("0x0000011d499735f29d943efb5d1db5cc9d05fb8e218e3fcd38ece6ded7787a82"));
-        assert(genesis.hashMerkleRoot == uint256("0x511020b6687e5dc06b165c5ad6c4bbcf2f0f2e845f5c5ee23fed6bbd50eb8667"));
+        assert(hashGenesisBlock == uint256("0x0000008d18d1fe0b376aa42380059d5bd6d95483dc5566f7aa5888f92c698022"));
+        assert(genesis.hashMerkleRoot == uint256("0x8dbe66645fe1040f3e0f7ace7b3e4a1aacdfea2f4d16b5d5c01169647ec43df2"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,103);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,88);
@@ -168,8 +168,15 @@ public:
         nRPCPort = 27171;
         strDataDir = "testnet";
 
+        genesis.nVersion = 1;
+        genesis.nTime    = 1484332000;
+        genesis.nBits    = 0x1f00ffff;
+        genesis.nNonce   = 1172;
+
+		if (false) { MineGenesis(genesis, nProofOfWorkLimit); }
+
         // Modify the testnet genesis block so the timestamp is valid for a later start.
-        assert(hashGenesisBlock == uint256("0x0000011d499735f29d943efb5d1db5cc9d05fb8e218e3fcd38ece6ded7787a82"));
+        // assert(hashGenesisBlock == uint256("0x00008ca69320cdd1932a5d19f6602b383d6683e4185b552acb05a32dd94995f2"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
