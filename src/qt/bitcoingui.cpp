@@ -19,7 +19,7 @@
 #include "walletmodel.h"
 #include "editaddressdialog.h"
 #include "optionsmodel.h"
-#include "transactxiondescdialog.h"
+#include "transactiondescdialog.h"
 #include "addresstablemodel.h"
 #include "transactionview.h"
 #include "overviewpage.h"

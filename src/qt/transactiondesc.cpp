@@ -1,4 +1,4 @@
-#include "transactxiondesc.h"
+#include "transactiondesc.h"
 
 #include "bitcoinunits.h"
 #include "guiutil.h"

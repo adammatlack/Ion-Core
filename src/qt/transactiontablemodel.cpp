@@ -3,7 +3,7 @@
 #include "guiutil.h"
 #include "transactionrecord.h"
 #include "guiconstants.h"
-#include "transactxiondesc.h"
+#include "transactiondesc.h"
 #include "walletmodel.h"
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
