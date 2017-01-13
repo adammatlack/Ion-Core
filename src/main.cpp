@@ -42,11 +42,11 @@ CTxMemPool mempool;
 map<uint256, CBlockIndex*> mapBlockIndex;
 set<pair<COutPoint, unsigned int> > setStakeSeen;
 
-unsigned int nStakeMinAge = 24 * 60 * 60; // 24 hours
+unsigned int nStakeMinAge = 60; // 24 hours
 unsigned int nModifierInterval = 2 * 60; // time to elapse before new modifier is computed
 
 int nCoinbaseMaturity = 10;
-int nStakeMinConfirmations = 30;
+int nStakeMinConfirmations = 10;
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 
@@ -2369,7 +2369,6 @@ bool CTransaction::GetCoinAge(CTxDB& txdb, const CBlockIndex* pindexPrev, uint64
 {
     uint256 bnCentSecond = 0;  // coin age in the unit of cent-seconds
     nCoinAge = 0;
-    int nStakeMinConfirmations = 1440;
 
     if (IsCoinBase())
         return true;
