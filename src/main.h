@@ -330,13 +330,13 @@ public:
     int64_t GetValueOut() const
     {
         int64_t nValueOut = 0;
-        BOOST_FOREACH(const CTxOut& txout, vout)
+        for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it)
         {
-            nValueOut += txout.nValue;
-            if (!MoneyRange(txout.nValue) || !MoneyRange(nValueOut))
-                throw std::runtime_error("CTransaction::GetValueOut() : value out of range");
-        }
-        return nValueOut;
+			nValueOut += it->nValue;
+			if (!MoneyRange(it->nValue) || !MoneyRange(nValueOut))
+				throw std::runtime_error("CTransaction::GetValueOut(): value out of range");
+		}
+		return nValueOut;
     }
 
     /** Amount of bitcoins coming in to this transaction
