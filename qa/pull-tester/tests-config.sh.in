@@ -1,0 +1,16 @@
+#!/bin/bash
+# Copyright (c) 2015-2016 Silk Network Developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+BUILDDIR="@abs_top_builddir@"
+EXEEXT="@EXEEXT@"
+
+# These will turn into comments if they were disabled when configuring.
+@ENABLE_WALLET_TRUE@ENABLE_WALLET=1
+@BUILD_DARKSILK_UTILS_TRUE@ENABLE_UTILS=1
+@BUILD_DARKSILKD_TRUE@ENABLE_DARKSILKD=1
+
+REAL_DARKSILKD="$BUILDDIR/src/darksilkd${EXEEXT}"
+REAL_DARKSILKCLI="$BUILDDIR/src/darksilk-cli${EXEEXT}"
+
