@@ -234,8 +234,8 @@ HEADERS += src/qt/bitcoingui.h src/pow.h \
     src/qt/optionsmodel.h \
     src/qt/monitoreddatamapper.h \
     src/qt/trafficgraphwidget.h \
-    src/qt/transactiondesc.h \
-    src/qt/transactiondescdialog.h \
+    src/qt/transactxiondesc.h \
+    src/qt/transactxiondescdialog.h \
     src/qt/bitcoinamountfield.h \
     src/wallet.h \
     src/keystore.h \
@@ -338,8 +338,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/pow.cpp src/uint256.cpp 
     src/qt/optionsmodel.cpp \
     src/qt/monitoreddatamapper.cpp \
     src/qt/trafficgraphwidget.cpp \
-    src/qt/transactiondesc.cpp \
-    src/qt/transactiondescdialog.cpp \
+    src/qt/transactxiondesc.cpp \
+    src/qt/transactxiondescdialog.cpp \
     src/qt/bitcoinstrings.cpp \
     src/qt/bitcoinamountfield.cpp \
     src/wallet.cpp \
@@ -417,7 +417,7 @@ FORMS += \
     src/qt/forms/signverifymessagedialog.ui \
     src/qt/forms/aboutdialog.ui \
     src/qt/forms/editaddressdialog.ui \
-    src/qt/forms/transactiondescdialog.ui \
+    src/qt/forms/transactxiondescdialog.ui \
     src/qt/forms/overviewpage.ui \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \

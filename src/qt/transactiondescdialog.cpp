@@ -1,5 +1,5 @@
-#include "transactiondescdialog.h"
-#include "ui_transactiondescdialog.h"
+#include "transactxiondescdialog.h"
+#include "ui_transactxiondescdialog.h"
 
 #include "transactiontablemodel.h"
 
