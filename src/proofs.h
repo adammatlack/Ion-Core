@@ -16,8 +16,10 @@
 class CBlockIndex;
 class uint256;
 
+int CoinBaseMaturity();
+
 static const int nTargetSpacing = 64;
-static const int nCoinbaseMaturity = 120;
+static const int nCoinbaseMaturity = CoinBaseMaturity();
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */

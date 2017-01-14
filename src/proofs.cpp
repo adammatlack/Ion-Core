@@ -15,6 +15,8 @@
 #include <math.h>
 #include <stdint.h> 
 
+int CoinBaseMaturity() { if (pindexBest->nHeight <= 2000) { return 10; } else { return 120; } }
+
 // miner's coin base reward
 int64_t GetCoinbaseValue(int nHeight, CAmount nFees)
 {
@@ -22,7 +24,7 @@ int64_t GetCoinbaseValue(int nHeight, CAmount nFees)
 
         if(nHeight == 1)
         {
-            nSubsidy = 11000000 * COIN;
+            nSubsidy = 16015000 * COIN;
         }
 
     return nSubsidy + nFees;
