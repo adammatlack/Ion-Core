@@ -15,18 +15,34 @@
 
 using namespace boost::assign;
 
-static const unsigned int pnSeed[] =
-{
-   0xA3ACD53E,
-   0x330F0380,
-};
-
 struct SeedSpec6 {
     uint8_t addr[16];
     uint16_t port;
 };
 
 #include "chainparamsseeds.h"
+
+/**
+ * Main network
+ */
+
+//! Convert the pnSeeds6 array into usable address objects.
+static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data, unsigned int count)
+{
+    // It'll only connect to one or two seed nodes because once it connects,
+    // it'll get a pile of addresses with newer timestamps.
+    // Seed nodes are given a random 'last seen time' of between one and two
+    // weeks ago.
+    const int64_t nOneWeek = 7*24*60*60;
+    for (unsigned int i = 0; i < count; i++)
+    {
+        struct in6_addr ip;
+        memcpy(&ip, data[i].addr, sizeof(ip));
+        CAddress addr(CService(ip, data[i].port));
+        addr.nTime = GetTime() - GetRand(nOneWeek) - nOneWeek;
+        vSeedsOut.push_back(addr);
+    }
+}
 
 void MineGenesis(CBlock genesis, uint256 nProofOfWorkLimit){
     // This will figure out a valid hash and Nonce if you're creating a differe$
@@ -52,37 +68,6 @@ void MineGenesis(CBlock genesis, uint256 nProofOfWorkLimit){
     printf("Gensis nTime: %u\n", genesis.nTime);
     printf("Gensis nBits: %08x\n", genesis.nBits);
     printf("Gensis Nonce: %u\n\n\n", genesis.nNonce);
-}
-
-//
-// Main network
-//
-
-// Convert the pnSeeds array into usable address objects.
-static void convertSeeds(std::vector<CAddress> &vSeedsOut, const unsigned int *data, unsigned int count, int port)
-{
-     // It'll only connect to one or two seed nodes because once it connects,
-     // it'll get a pile of addresses with newer timestamps.
-     // Seed nodes are given a random 'last seen time' of between one and two
-     // weeks ago.
-     const int64_t nOneWeek = 7*24*60*60;
-    for (unsigned int k = 0; k < count; ++k)
-    {
-        struct in_addr ip;
-        unsigned int i = data[k], t;
-        
-        // -- convert to big endian
-        t =   (i & 0x000000ff) << 24u
-            | (i & 0x0000ff00) << 8u
-            | (i & 0x00ff0000) >> 8u
-            | (i & 0xff000000) >> 24u;
-        
-        memcpy(&ip, &t, sizeof(ip));
-        
-        CAddress addr(CService(ip, port));
-        addr.nTime = GetTime()-GetRand(nOneWeek)-nOneWeek;
-        vSeedsOut.push_back(addr);
-    }
 }
 
 class CMainParams : public CChainParams {
@@ -130,10 +115,8 @@ public:
         base58Prefixes[STEALTH_ADDRESS] = std::vector<unsigned char>(1,40);
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-
-        vSeeds.push_back(CDNSSeedData("seeder.ionomy.com","seeder2.ionomy.com"));
         
-        convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
+        convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         nPoolMaxTransactions = 3;
         //strSporkKey = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
@@ -195,8 +178,6 @@ public:
         base58Prefixes[STEALTH_ADDRESS] = std::vector<unsigned char>(1,40);
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
-
-        convertSeeds(vFixedSeeds, pnTestnetSeed, ARRAYLEN(pnTestnetSeed), nDefaultPort);
 
         nLastPOWBlock = 0x7fffffff;
     }

@@ -15,8 +15,6 @@
 #include <math.h>
 #include <stdint.h> 
 
-int CoinBaseMaturity() { if (pindexBest->nHeight <= 2000) { return 10; } else { return 120; } }
-
 // miner's coin base reward
 int64_t GetCoinbaseValue(int nHeight, CAmount nFees)
 {
