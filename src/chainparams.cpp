@@ -100,14 +100,14 @@ public:
         genesis.nVersion = 1;
         genesis.nTime    = 1484310000;
         genesis.nBits    = 0x1e00ffff;
-        genesis.nNonce   = 0;
+        genesis.nNonce   = 359900;
 
 		hashGenesisBlock = genesis.GetHash();
 
-		if (true) { MineGenesis(genesis, nProofOfWorkLimit); }
+		if (false) { MineGenesis(genesis, nProofOfWorkLimit); }
         
-        assert(hashGenesisBlock == uint256("0x"));
-        assert(genesis.hashMerkleRoot == uint256("0x"));
+        assert(hashGenesisBlock == uint256("0x0000009b33ffdb43dc629edff9f4490d9b71cfe5effada3de8b7f2179e514175"));
+        assert(genesis.hashMerkleRoot == uint256("0x2de1c19c955399e93a071058647e66f315b193f9d64c73f8acac6830eae65295"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,103);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,88);
