@@ -36,6 +36,7 @@
 #include "proofs.h"
 #include "messagemodel.h"
 #include "messagepage.h"
+#include "masternodelist.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -91,7 +92,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     notificator(0),
     rpcConsole(0),
     prevBlocks(0),
-    nWeight(0)
+	masternodeAction(0),
+	nWeight(0)
 {
     resize(1024, 520);
     setWindowTitle(tr("Ion") + " - " + tr("Wallet"));
@@ -136,6 +138,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     signVerifyMessageDialog = new SignVerifyMessageDialog(this);
 
     messagePage = new MessagePage(this);
+
+    masternodePage = new MasternodeList(this);
 
     centralStackedWidget = new QStackedWidget(this);
     centralStackedWidget->setContentsMargins(0, 0, 0, 0);
@@ -285,7 +289,15 @@ void BitcoinGUI::createActions()
     messageAction = new QAction(QIcon(":/icons/edit"), tr("&Messages"), this);
     messageAction->setToolTip(tr("View and Send Encrypted messages"));
     messageAction->setCheckable(true);
+	messageAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
     tabGroup->addAction(messageAction);
+
+	masternodeAction = new QAction(QIcon(":/icons/masternode"), tr("&Masternodes"), this);
+	masternodeAction->setStatusTip(tr("Browse masternodes"));
+	masternodeAction->setToolTip(masternodeAction->statusTip());
+	masternodeAction->setCheckable(true);
+	masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+	tabGroup->addAction(masternodeAction);
 
     showBackupsAction = new QAction(QIcon(":/icons/browse"), tr("Show Auto&Backups"), this);
     showBackupsAction->setStatusTip(tr("S"));
@@ -302,6 +314,8 @@ void BitcoinGUI::createActions()
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
     connect(messageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(messageAction, SIGNAL(triggered()), this, SLOT(gotoMessagePage()));
+	connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+	connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
 
     quitAction = new QAction(tr("E&xit"), this);
     quitAction->setToolTip(tr("Quit application"));
@@ -329,6 +343,7 @@ void BitcoinGUI::createActions()
     lockWalletAction->setToolTip(tr("Lock wallet"));
     signMessageAction = new QAction(tr("Sign &message..."), this);
     verifyMessageAction = new QAction(tr("&Verify message..."), this);
+    masternodeAction = new QAction(tr("Open &Masternode Configuration File"), this);
 
     exportAction = new QAction(tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
@@ -404,7 +419,8 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
-
+	toolbar->addAction(masternodeAction);
+	
     if (!fLiteMode){
         toolbar->addAction(messageAction);
     }
@@ -876,6 +892,16 @@ void BitcoinGUI::gotoAddressBookPage()
     exportAction->setEnabled(true);
     disconnect(exportAction, SIGNAL(triggered()), 0, 0);
     connect(exportAction, SIGNAL(triggered()), addressBookPage, SLOT(exportClicked()));
+}
+
+void BitcoinGUI::gotoMasternodePage()
+{
+	masternodeAction->setChecked(true);
+    centralStackedWidget->setCurrentWidget(masternodePage);
+
+    exportAction->setEnabled(true);
+    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+    connect(exportAction, SIGNAL(triggered()), masternodeAction, SLOT(exportClicked()));
 }
 
 void BitcoinGUI::gotoReceiveCoinsPage()

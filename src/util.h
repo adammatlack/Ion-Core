@@ -381,6 +381,7 @@ inline int64_t GetTimeMicros()
 }
 
 std::string DateTimeStrFormat(const char* pszFormat, int64_t nTime);
+std::string DurationToDHMS(int64_t nDurationTime);
 
 static const std::string strTimestampFormat = "%Y-%m-%d %H:%M:%S UTC";
 inline std::string DateTimeStrFormat(int64_t nTime)

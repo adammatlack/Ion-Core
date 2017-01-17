@@ -18,6 +18,7 @@ class Notificator;
 class RPCConsole;
 class MessagePage;
 class MessageModel;
+class MasternodeList;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -75,6 +76,7 @@ private:
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
     MessagePage *messagePage;
+    MasternodeList *masternodePage;
     QLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
     QLabel *labelConnectionsIcon;
@@ -104,8 +106,8 @@ private:
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
     QAction *messageAction;
-    QAction *blockAction;
     QAction *showBackupsAction;
+    QAction *masternodeAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -180,6 +182,8 @@ private slots:
     void gotoMessagePage();
     /** Show configuration dialog */
     void optionsClicked();
+    /** Switch to masternode page */
+	void gotoMasternodePage();
     /** Show about dialog */
     void aboutClicked();
 #ifndef Q_OS_MAC
