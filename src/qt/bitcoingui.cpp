@@ -34,7 +34,6 @@
 #include "init.h"
 #include "ui_interface.h"
 #include "proofs.h"
-#include "masternodemanager.h"
 #include "messagemodel.h"
 #include "messagepage.h"
 
@@ -136,7 +135,6 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     signVerifyMessageDialog = new SignVerifyMessageDialog(this);
 
-    masternodeManagerPage = new MasternodeManager(this);
     messagePage = new MessagePage(this);
 
     centralStackedWidget = new QStackedWidget(this);
@@ -146,7 +144,6 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     centralStackedWidget->addWidget(addressBookPage);
     centralStackedWidget->addWidget(receiveCoinsPage);
     centralStackedWidget->addWidget(sendCoinsPage);
-    centralStackedWidget->addWidget(masternodeManagerPage);
     centralStackedWidget->addWidget(messagePage);
 
     QWidget *centralWidget = new QWidget();
@@ -285,11 +282,6 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
-    masternodeManagerAction = new QAction(QIcon(":/icons/masternode"), tr("&Masternodes"), this);
-    masternodeManagerAction->setToolTip(tr("Show Master Nodes status and configure your nodes."));
-    masternodeManagerAction->setCheckable(true);
-    tabGroup->addAction(masternodeManagerAction);
-
     messageAction = new QAction(QIcon(":/icons/edit"), tr("&Messages"), this);
     messageAction->setToolTip(tr("View and Send Encrypted messages"));
     messageAction->setCheckable(true);
@@ -308,8 +300,6 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
-    connect(masternodeManagerAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(masternodeManagerAction, SIGNAL(triggered()), this, SLOT(gotoMasternodeManagerPage()));
     connect(messageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(messageAction, SIGNAL(triggered()), this, SLOT(gotoMessagePage()));
 
@@ -414,7 +404,6 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
-    toolbar->addAction(masternodeManagerAction);
 
     if (!fLiteMode){
         toolbar->addAction(messageAction);
@@ -422,7 +411,7 @@ void BitcoinGUI::createToolBars()
 
     QWidget *spacer = makeToolBarSpacer();
     toolbar->addWidget(spacer);
-    toolbar->setOrientation(Qt::Vertical);
+    toolbar->setOrientation(Qt::Horizontal);
     toolbar->setMovable(false);
 
     addToolBar(Qt::TopToolBarArea, toolbar);
@@ -858,15 +847,6 @@ void BitcoinGUI::clearWidgets()
         centralStackedWidget->removeWidget(widget);
         widget->deleteLater();
     }
-}
-
-void BitcoinGUI::gotoMasternodeManagerPage()
-{
-    masternodeManagerAction->setChecked(true);
-    centralStackedWidget->setCurrentWidget(masternodeManagerPage);
-
-    exportAction->setEnabled(false);
-    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
 }
 
 void BitcoinGUI::gotoOverviewPage()

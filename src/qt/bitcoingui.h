@@ -16,7 +16,6 @@ class SendCoinsDialog;
 class SignVerifyMessageDialog;
 class Notificator;
 class RPCConsole;
-class MasternodeManager;
 class MessagePage;
 class MessageModel;
 
@@ -75,7 +74,6 @@ private:
     AddressBookPage *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
-    MasternodeManager *masternodeManagerPage;
     MessagePage *messagePage;
     QLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
@@ -105,7 +103,6 @@ private:
     QAction *lockWalletAction;
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
-    QAction *masternodeManagerAction;
     QAction *messageAction;
     QAction *blockAction;
     QAction *showBackupsAction;
@@ -175,8 +172,6 @@ private slots:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage();
-    /** Switch to masternode manager page*/
-    void gotoMasternodeManagerPage();
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */

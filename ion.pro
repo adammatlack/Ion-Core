@@ -1,3 +1,5 @@
+
+
 TEMPLATE = app
 TARGET = ion-qt
 VERSION = 1.1.0.0
@@ -284,9 +286,6 @@ HEADERS += src/qt/bitcoingui.h src/proofs.h src/amount.h \
     src/crypto/sha1.h \
     src/crypto/sha256.h \
     src/crypto/sha512.h \
-    src/qt/masternodemanager.h \
-    src/qt/addeditatomnode.h \
-    src/qt/atomnodeconfigdialog.h \
     src/qt/qcustomplot.h \
     src/smessage.h \
     src/qt/messagepage.h \
@@ -394,9 +393,6 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.c
     src/crypto/sha1.cpp \
     src/crypto/sha256.cpp \
     src/crypto/sha512.cpp \
-    src/qt/masternodemanager.cpp \
-    src/qt/addeditatomnode.cpp \
-    src/qt/atomnodeconfigdialog.cpp \
     src/qt/qcustomplot.cpp \
     src/smessage.cpp \
     src/qt/messagepage.cpp \
@@ -424,9 +420,6 @@ FORMS += \
     src/qt/forms/rpcconsole.ui \
     src/qt/forms/optionsdialog.ui \
     src/qt/forms/darksendconfig.ui \
-    src/qt/forms/masternodemanager.ui \
-    src/qt/forms/addeditatomnode.ui \
-    src/qt/forms/atomnodeconfigdialog.ui \
     src/qt/forms/messagepage.ui \
     src/qt/forms/sendmessagesentry.ui \
     src/qt/forms/sendmessagesdialog.ui \
