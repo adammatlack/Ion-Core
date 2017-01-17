@@ -17,8 +17,6 @@
 #include <QMessageBox>
 #include <QDateTime>
 
-CCriticalSection cs_masternodes;
-
 MasternodeList::MasternodeList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MasternodeList),
@@ -28,7 +26,7 @@ MasternodeList::MasternodeList(QWidget *parent) :
     ui->setupUi(this);
 
     ui->startButton->setEnabled(false);
-
+/*
     int columnAliasWidth = 100;
     int columnAddressWidth = 200;
     int columnProtocolWidth = 60;
@@ -48,7 +46,7 @@ MasternodeList::MasternodeList(QWidget *parent) :
     ui->tableWidgetMasternodes->setColumnWidth(2, columnStatusWidth);
     ui->tableWidgetMasternodes->setColumnWidth(3, columnActiveWidth);
     ui->tableWidgetMasternodes->setColumnWidth(4, columnLastSeenWidth);
-
+*/
     ui->tableWidgetMyMasternodes->setContextMenuPolicy(Qt::CustomContextMenu);
 
     QAction *startAliasAction = new QAction(tr("Start alias"), this);
@@ -333,8 +331,6 @@ void MasternodeList::on_startButton_clicked()
 
     if(retval != QMessageBox::Yes) return;
 
-    WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
-
     if(pwalletMain->IsLocked()) {
         WalletModel::UnlockContext ctx(walletModel->requestUnlock());
 
@@ -356,8 +352,6 @@ void MasternodeList::on_startAllButton_clicked()
         QMessageBox::Cancel);
 
     if(retval != QMessageBox::Yes) return;
-
-    WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
 
     if(pwalletMain->IsLocked()) {
         WalletModel::UnlockContext ctx(walletModel->requestUnlock());
@@ -388,8 +382,6 @@ void MasternodeList::on_startMissingButton_clicked()
         QMessageBox::Cancel);
 
     if(retval != QMessageBox::Yes) return;
-
-    WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
 
     if(pwalletMain->IsLocked()) {
         WalletModel::UnlockContext ctx(walletModel->requestUnlock());

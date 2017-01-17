@@ -92,7 +92,6 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     notificator(0),
     rpcConsole(0),
     prevBlocks(0),
-	masternodeAction(0),
 	nWeight(0)
 {
     resize(1024, 520);
@@ -149,6 +148,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     centralStackedWidget->addWidget(receiveCoinsPage);
     centralStackedWidget->addWidget(sendCoinsPage);
     centralStackedWidget->addWidget(messagePage);
+    centralStackedWidget->addWidget(masternodePage);
 
     QWidget *centralWidget = new QWidget();
     QVBoxLayout *centralLayout = new QVBoxLayout(centralWidget);
@@ -293,8 +293,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(messageAction);
 
 	masternodeAction = new QAction(QIcon(":/icons/masternode"), tr("&Masternodes"), this);
-	masternodeAction->setStatusTip(tr("Browse masternodes"));
-	masternodeAction->setToolTip(masternodeAction->statusTip());
+	masternodeAction->setToolTip(tr("Browse masternodes"));
 	masternodeAction->setCheckable(true);
 	masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 	tabGroup->addAction(masternodeAction);
@@ -343,7 +342,7 @@ void BitcoinGUI::createActions()
     lockWalletAction->setToolTip(tr("Lock wallet"));
     signMessageAction = new QAction(tr("Sign &message..."), this);
     verifyMessageAction = new QAction(tr("&Verify message..."), this);
-    masternodeAction = new QAction(tr("Open &Masternode Configuration File"), this);
+//    masternodeAction = new QAction(tr("Open &Masternode Configuration File"), this);
 
     exportAction = new QAction(tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));

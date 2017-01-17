@@ -1,5 +1,3 @@
-
-
 TEMPLATE = app
 TARGET = ion-qt
 VERSION = 1.1.0.0
@@ -188,6 +186,7 @@ HEADERS += src/qt/bitcoingui.h src/proofs.h src/amount.h \
     src/qt/aboutdialog.h \
     src/qt/editaddressdialog.h \
     src/qt/bitcoinaddressvalidator.h \
+    src/qt/masternodelist.h \
     src/alert.h \
     src/allocators.h \
     src/addrman.h \
@@ -307,6 +306,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.c
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitcoinaddressvalidator.cpp \
+	src/qt/masternodelist.cpp \
     src/alert.cpp \
     src/allocators.cpp \
     src/base58.cpp \
@@ -407,6 +407,7 @@ RESOURCES += \
     src/qt/bitcoin.qrc
 
 FORMS += \
+    src/qt/forms/masternodelist.ui \
     src/qt/forms/coincontroldialog.ui \
     src/qt/forms/sendcoinsdialog.ui \
     src/qt/forms/addressbookpage.ui \
