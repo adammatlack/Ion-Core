@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,12 +36,8 @@ class CMasterKey
 public:
     std::vector<unsigned char> vchCryptedKey;
     std::vector<unsigned char> vchSalt;
-    //! 0 = EVP_sha512()
-    //! 1 = scrypt()
     unsigned int nDerivationMethod;
     unsigned int nDeriveIterations;
-    //! Use this for more parameters to key derivation,
-    //! such as the various parameters to scrypt
     std::vector<unsigned char> vchOtherDerivationParameters;
 
 	IMPLEMENT_SERIALIZE(
